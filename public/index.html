@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs api</title>
+</head>
+<body>
+   <h1> Hellow </h1>
+</body>
+<script>
+    var url = "http://localhost:5000/api/v1/jobs/";
+    const fetch_data = async (url)=>{ 
+        const get_all_jobs =  await fetch(url, {
+        method: "GET", 
+        headers: {
+          "Content-Type": "application/json", 
+          "Authorization" : "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3JlSWQiOiI2NTFhNTlmYzllNjhlNGEyY2MyNDg4NjYiLCJuYW1lIjoiUm9iaW4iLCJpYXQiOjE2OTYyMzQ0MzgsImV4cCI6MTY5NjQwNzIzOH0.QzeejFXe7qtywFzzKoyuxZqjrxonqJzSdUb2osFaEZs"
+        },
+       
+     
+         // body data type must match "Content-Type" header
+      });
+    
+      return get_all_jobs.json(); // parses JSON response into native JavaScript objects
+    }
+    (async () => {
+        console.log("data fetched ",await fetch_data(url));
+    })()
+</script>
+</html>
