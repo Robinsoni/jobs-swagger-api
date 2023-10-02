@@ -9,8 +9,9 @@ const auth = async(req,res,next) => {
             const token = req.headers.authorization.split(" ")[1].trim();
             /** Now verify the token */
             const payload = jwt.verify(token, process.env.JWT_SECRET)
+           
             // attach the user to the job routes 
-            req.user = { userId: payload.userId, name: payload.name }
+            req.user = { userId: payload.usreId, name: payload.name }
             next()
         } 
     }catch(error){ 

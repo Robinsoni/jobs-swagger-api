@@ -14,7 +14,7 @@ const login = async (req, res) => {
    try{ 
         const {email, password} = req.body;
         if(!email || !password){
-            res.status(StatusCodes.NOT_FOUND).json({error:"User does not exists, Please check the credentials"});
+            res.status(StatusCodes.NOT_FOUND).json({error:"User does not exist, Please check the credentials"});
         } 
         const user = await User.findOne({email})
         if(!user){ 
