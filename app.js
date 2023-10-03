@@ -26,7 +26,7 @@ app.use(helmet());
 app.use(cors());
 app.use(xss());
 
-
+app.get("/",(req,res,next) => {res.redirect('/api-docs');});
 app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocument));
 
 const jobsRouter =  require("./routes/jobs");
@@ -42,7 +42,7 @@ const start = async() =>{
     await connectDB(process.env.MONGO_URI);
     try{
         app.listen(port,() => {
-            console.log(`Server is listening on port {port}`);
+            console.log(`Server is listening on port ${port}`);
         });
     }catch(err){
         console.log(err);

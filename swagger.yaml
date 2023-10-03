@@ -4,8 +4,10 @@ info:
   contact: {}
   version: '1.0'
 servers:
-- url: http://localhost:5000/api/v1
-  variables: {}
+  - url: https://robin-jobs-swagger-api.cyclic.cloud/api/v1
+    description: Production Server
+  - url: http://localhost:5000/api/v1
+    description: Local Development Server
 paths:
   /jobs/{id}:
     parameters:
