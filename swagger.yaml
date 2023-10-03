@@ -56,10 +56,7 @@ paths:
               - $ref: '#/components/schemas/UpdateajobRequest'
               - example: 
                   company: MSFT
-            example:
-              name: Robin
-              email: random12@gmail.com
-              password: test111
+            example: 
               company: MSFT
         required: true
       responses:
