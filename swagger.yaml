@@ -1,0 +1,263 @@
+openapi: 3.0.0
+info:
+  title: JOBS API
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:5000/api/v1
+  variables: {}
+paths:
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The Job ID
+    delete:
+      tags:
+      - Jobs
+      summary: Delete a job
+      operationId: Deleteajob
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    get:
+      tags:
+      - Jobs
+      summary: Get by id
+      operationId: Getbyid
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    patch:
+      tags:
+      - Jobs
+      summary: Update a job
+      operationId: Updateajob
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateajobRequest'
+              - example: 
+                  company: MSFT
+            example:
+              name: Robin
+              email: random12@gmail.com
+              password: test111
+              company: MSFT
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /jobs:
+    get:
+      tags:
+      - Jobs
+      summary: Get all jobs
+      operationId: Getalljobs
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+    post:
+      tags:
+      - Jobs
+      summary: Create a job
+      operationId: Createajob
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/CreateajobRequest'
+              - example:
+                  company: Facebook
+                  position: SDE1
+                  status: pending
+            example:
+              company: Facebook
+              position: SDE1
+              status: pending
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+      - bearer: []
+  /auth/login:
+    post:
+      tags:
+      - Auth
+      summary: Login
+      operationId: Login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/LoginRequest'
+              - example:
+                  name: Robin
+                  email: random1@gmail.com
+                  password: test11
+            example:
+              name: Robin
+              email: random1@gmail.com
+              password: test11
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/register:
+    post:
+      tags:
+      - Auth
+      summary: Register a user
+      operationId: Registerauser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/RegisterauserRequest'
+              - example:
+                  name: Robin
+                  email: random121212@gmail.com
+                  password: test11
+            example:
+              name: Robin
+              email: random121212@gmail.com
+              password: test11
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+components:
+  schemas:
+    DeleteajobRequest:
+      title: Delete a job request
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+       
+    LoginRequest:
+      title: Login request
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: Robin
+        email: random1@gmail.com
+        password: test11
+    CreateajobRequest:
+      title: Create a job request
+      required:
+      - company
+      - position
+      - status
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+        status:
+          type: string
+      example:
+        company: Facebook
+        position: SDE1
+        status: pending
+    UpdateajobRequest:
+      title: Update a job request
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+        company:
+          type: string
+        position:
+          type: string
+        status:
+          type: string
+      example:
+        company: MSFT
+    RegisterauserRequest:
+      title: Register a user request
+      required:
+      - name
+      - email
+      - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: Robin
+        email: random121212@gmail.com
+        password: test11
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+- name: Jobs
+  description: 'Jobs APi'
+- name: Auth
+  description: 'Generate the bearer token'

@@ -8,7 +8,12 @@ const helmet = require('helmet');
 const cors = require('cors');
 const xss = require('xss-clean');
 const rateLimiter = require('express-rate-limit');
-//
+
+//swagger
+const swaggerUI = require("swagger-ui-express");
+const YAML = require('yamljs');
+const swaggerDocument = YAML.load('./swagger.yaml');
+
 
 app.use(
   rateLimiter({
@@ -20,6 +25,9 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(xss());
+
+
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocument));
 
 const jobsRouter =  require("./routes/jobs");
 const connectDB = require("./db/connect")
